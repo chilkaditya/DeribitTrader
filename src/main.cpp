@@ -23,9 +23,9 @@ int main() {
 
         // Other operations (optional)
         double amount = 10.0;
-        double price = 30000.0;
-        // api_client.place_buy_order(instrument_name, amount, price);
-        // api_client.place_sell_order(instrument_name, amount, price);
+        double price = 30.0;
+        api_client.place_buy_Order(instrument_name, amount, price);
+        api_client.place_sell_Order(instrument_name, amount, price);
 
     } catch (const std::exception& ex) {
         std::cerr << "Error: " << ex.what() << std::endl;

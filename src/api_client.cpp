@@ -24,17 +24,17 @@ std::string APIClient::makeRequest(const std::string& url, const std::string& pa
 
     curl = curl_easy_init();
     if (curl) {
-        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-        curl_easy_setopt(curl, CURLOPT_POST, 1L);
+        curl_easy_setopt(curl, CURLOPT_URL, url.c_str()); // url to work on
+        curl_easy_setopt(curl, CURLOPT_POST, 1L); // make an http post request
         curl_easy_setopt(curl, CURLOPT_POSTFIELDS, payload.c_str());
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback); //call back for wtiting the data
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response); //Data pointer to pass to the write callback
 
         struct curl_slist* headers = nullptr;
         headers = curl_slist_append(headers, "Content-Type: application/json");
-        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);// specifying the cutom header
 
-        res = curl_easy_perform(curl);
+        res = curl_easy_perform(curl); // perform network transfer.
         if (res != CURLE_OK) {
             std::cerr << "cURL error: " << curl_easy_strerror(res) << std::endl;
         }
@@ -93,7 +93,7 @@ void APIClient::place_buy_Order(const std::string& instrument_name, double amoun
     std::cout << "Buy Order Response: " << json_response.dump(4) << std::endl;
 }
 
-void APIClient::place_sell_Order(const std::string& instrument_name, double amount,double price,double trigger_price) {
+void APIClient::place_sell_Order(const std::string& instrument_name, double amount,double price) {
     std::string url = "https://test.deribit.com/api/v2/private/sell";
     
     // Create JSON payload
@@ -105,8 +105,8 @@ void APIClient::place_sell_Order(const std::string& instrument_name, double amou
             {"instrument_name", instrument_name},
             {"amount", amount},
             {"price", price},
-            {"trigger_price", trigger_price},
-            {"type", "stop_limit"}, // You can also use "market"
+            // {"trigger_price", trigger_price},
+            {"type", "market"}, // You can also use "market"
             {"trigger", "last_price"},
             {"access_token", access_token_}
         }}
@@ -117,7 +117,7 @@ void APIClient::place_sell_Order(const std::string& instrument_name, double amou
     nlohmann::json json_response = nlohmann::json::parse(response);
 
     // Handle the response
-    std::cout << "Buy Order Response: " << json_response.dump(4) << std::endl;
+    std::cout << "Sell Order Response: " << json_response.dump(4) << std::endl;
 }
 
 void APIClient::edit_Order(const std::string& order_id, double amount,double price) {
@@ -142,7 +142,7 @@ void APIClient::edit_Order(const std::string& order_id, double amount,double pri
     nlohmann::json json_response = nlohmann::json::parse(response);
 
     // Handle the response
-    std::cout << "Buy Order Response: " << json_response.dump(4) << std::endl;
+    std::cout << "edit Order Response: " << json_response.dump(4) << std::endl;
 }
 
 void APIClient::cancel_Order(const std::string& order_id) {
@@ -164,7 +164,7 @@ void APIClient::cancel_Order(const std::string& order_id) {
     nlohmann::json json_response = nlohmann::json::parse(response);
 
     // Handle the response
-    std::cout << "Buy Order Response: " << json_response.dump(4) << std::endl;
+    std::cout << "Cancel Order Response: " << json_response.dump(4) << std::endl;
 }
 
 void APIClient::get_order_book(const std::string& instrument_name) {

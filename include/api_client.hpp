@@ -10,7 +10,7 @@ public:
     void authenticate();
     std::string makeRequest(const std::string& url, const std::string& payload);
     void place_buy_Order(const std::string& instrument_name, double amount,double price);
-    void place_sell_Order(const std::string& instrument_name, double amount,double price,double trigger_price);
+    void place_sell_Order(const std::string& instrument_name, double amount,double price);
     void edit_Order(const std::string& order_id, double amount,double price);
     void cancel_Order(const std::string& order_id);
     void get_order_book(const std::string& instrument_name);
