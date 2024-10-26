@@ -1,0 +1,28 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-std=c++11",
+                "-o",
+                "deribit_auth.exe",
+                "first.cpp",
+                "-I", "C:/vcpkg/installed/x64-windows/include",
+                "-L", "C:/vcpkg/installed/x64-windows/lib",
+                // "-lboost_system",
+                "-lwebsocketpp",
+                "-lpthread",
+				"-DBOOST_USE_WINDOWS_H",
+    			"-DBOOST_ERROR_CODE_HEADER_ONLY"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"]
+        }
+    ]
+}
