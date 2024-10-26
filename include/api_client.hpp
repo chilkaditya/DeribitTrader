@@ -1,6 +1,5 @@
 #ifndef API_CLIENT_HPP
 #define API_CLIENT_HPP
-
 #include <string>
 
 class APIClient {

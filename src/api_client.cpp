@@ -4,7 +4,6 @@
 #include <iostream>
 #include <string>
 
-// std::cout << "reached" << std::endl;
 APIClient::APIClient(const std::string& client_id, const std::string& client_secret) 
     : client_id_(client_id), client_secret_(client_secret),access_token_("") {
         // std::cout << "reached" << std::endl;
