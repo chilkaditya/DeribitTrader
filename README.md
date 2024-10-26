@@ -19,6 +19,7 @@ This project uses the following libraries:
 **Note**: You can install these dependencies via `vcpkg` (a C++ package manager) or your preferred method.
 
 ### Installing vcpkg
+   1. Package manager for c++.
    ```bash
    git clone https://github.com/microsoft/vcpkg.git
    cd vcpkg
@@ -26,13 +27,12 @@ This project uses the following libraries:
    .\vcpkg integrate install
 
 ### Installing Dependencies with vcpkg
+   1. Install `vcpkg` following the instructions on [vcpkg GitHub](https://github.com/microsoft/vcpkg).
+   2. Install dependencies:
 
-1. Install `vcpkg` following the instructions on [vcpkg GitHub](https://github.com/microsoft/vcpkg).
-2. Install dependencies:
-
-   ```bash
-   vcpkg install curl
-   vcpkg install nlohmann-json
+      ```bash
+      vcpkg install curl
+      vcpkg install nlohmann-json
 
 
 
