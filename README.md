@@ -25,6 +25,7 @@ This project uses the following libraries:
    cd vcpkg
    .\bootstrap-vcpkg.bat
    .\vcpkg integrate install
+   ```
 
 ### Installing Dependencies with vcpkg
    1. Install `vcpkg` following the instructions on [vcpkg GitHub](https://github.com/microsoft/vcpkg).
@@ -33,19 +34,19 @@ This project uses the following libraries:
       ```bash
       vcpkg install curl
       vcpkg install nlohmann-json
-
-
-
+      ```
 
 ## Setup & Run
 1. Clone the repo.
    ```bash
    git clone https://github.com/chilkaditya/DeribitTrader.git
    cd DeribitTrader
+   ```
 2. Build using make (you can use your fav build system).
    ```bash
    make
    ./your_exe_file.exe
+   ```
 
 
 
