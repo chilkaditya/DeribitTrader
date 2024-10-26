@@ -14,6 +14,7 @@ public:
     void edit_Order(const std::string& order_id, double amount,double price);
     void cancel_Order(const std::string& order_id);
     void get_order_book(const std::string& instrument_name);
+    void view_position(const std::string& instrument_name);
 
 private:
     std::string client_id_;

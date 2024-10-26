@@ -10,23 +10,22 @@ int main() {
     std::string client_secret = "nBzkI65mUuJ7QulxB1JwTEkBXtZQc8dRTUKJK1aUy_g";
     APIClient api_client(client_id, client_secret);
     try {
-        api_client.authenticate();
-        // std::cout << "Access Token: " << access_token_ << std::endl;
+        APIClient api_client(client_id, client_secret);
         
-        // Make further private API calls
-        // get_account_summary(access_token);
-        api_client.place_buy_Order("ETH-PERPETUAL",40,10);
+        // Authenticate to get access token
+        api_client.authenticate();
+        
+        // Specify instrument name
+        std::string instrument_name = "BTC-PERPETUAL";
+        
+        // View current position
+        api_client.view_position(instrument_name);
 
-    } catch (const std::exception& ex) {
-        std::cerr << "Error: " << ex.what() << std::endl;
-    }
-    
-    try {
-        // Define the instrument name for which to fetch the order book
-        std::string instrument_name = "BTC-PERPETUAL"; // Change this as needed
-
-        // Get and display the order book
-        api_client.get_order_book(instrument_name);
+        // Other operations (optional)
+        double amount = 10.0;
+        double price = 30000.0;
+        // api_client.place_buy_order(instrument_name, amount, price);
+        // api_client.place_sell_order(instrument_name, amount, price);
 
     } catch (const std::exception& ex) {
         std::cerr << "Error: " << ex.what() << std::endl;

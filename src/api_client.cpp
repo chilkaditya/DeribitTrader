@@ -193,3 +193,25 @@ void APIClient::get_order_book(const std::string& instrument_name) {
         std::cerr << "Failed to retrieve order book data." << std::endl;
     }
 }
+
+void APIClient::view_position(const std::string &instrument_name) {
+    std::string url = "https://test.deribit.com/api/v2/private/get_position";
+    nlohmann::json payload = {
+        {"jsonrpc", "2.0"},
+        {"id", 6},
+        {"method", "private/get_position"},
+        {"params", {
+            {"instrument_name", instrument_name},
+            {"access_token", access_token_}
+        }}
+    };
+
+    std::string response = makeRequest(url, payload.dump());
+    nlohmann::json json_response = nlohmann::json::parse(response);
+
+    if (json_response.contains("result")) {
+        std::cout << "Current Position for " << instrument_name << ": " << json_response["result"].dump(4) << std::endl;
+    } else {
+        std::cerr << "Failed to retrieve current position data." << std::endl;
+    }
+}
